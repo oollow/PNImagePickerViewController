@@ -7,7 +7,6 @@
 //
 
 #import "PNCollectionViewCell.h"
-#import <PureLayout/PureLayout.h>
 #import <DGActivityIndicatorView/DGActivityIndicatorView.h>
 
 @interface PNCollectionViewCell()
@@ -28,7 +27,8 @@
     if (self) {
         [self.contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
 
-        _photoImageView = [UIImageView newAutoLayoutView];
+        _photoImageView = [UIImageView new];
+        _photoImageView.translatesAutoresizingMaskIntoConstraints = NO;
         [_photoImageView setContentMode:UIViewContentModeScaleAspectFill];
         [_photoImageView.layer setCornerRadius:4];
         [_photoImageView.layer setMasksToBounds:YES];
@@ -50,18 +50,21 @@
 
     if (!self.didUpdateConstraints) {
         
-        [self.contentView autoPinEdgesToSuperviewEdges];
+        [self.contentView.topAnchor constraintEqualToAnchor:self.contentView.superview.topAnchor].active = YES;
+        [self.contentView.trailingAnchor constraintEqualToAnchor:self.contentView.superview.trailingAnchor].active = YES;
+        [self.contentView.leadingAnchor constraintEqualToAnchor:self.contentView.superview.leadingAnchor].active = YES;
+        [self.contentView.bottomAnchor constraintEqualToAnchor:self.contentView.superview.bottomAnchor].active = YES;
+        
+        [_photoImageView.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:8].active = YES;
+        [_photoImageView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-8].active = YES;
+        [_photoImageView.leadingAnchor constraintEqualToAnchor:self.contentView.leadingAnchor constant:8].active = YES;
+        [_photoImageView.trailingAnchor constraintEqualToAnchor:self.contentView.trailingAnchor constant:-8].active = YES;
+        
+        [_photoImageView.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
+        [_photoImageView.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
 
-        [_photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:8];
-        [_photoImageView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:8];
-        [_photoImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:8];
-        [_photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:8];
-        [_photoImageView autoAlignAxisToSuperviewAxis:ALAxisVertical];
-        [_photoImageView autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
-
-
-        [_loadingSpinner autoAlignAxisToSuperviewAxis:ALAxisHorizontal];
-        [_loadingSpinner autoAlignAxisToSuperviewAxis:ALAxisVertical];
+        [_loadingSpinner.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
+        [_loadingSpinner.centerXAnchor constraintEqualToAnchor:self.contentView.centerXAnchor].active = YES;
         
         self.didUpdateConstraints = YES;
     }

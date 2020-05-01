@@ -24,6 +24,12 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>L'app vorrebbe accedere alle foto</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>L'app vorrebbe accedere al microfono</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>L'app vorrebbe accedere alle foto</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -43,11 +49,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSCameraUsageDescription</key>
-    <string>L'app vorrebbe accedere alle foto</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>L'app vorrebbe accedere alle foto</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>L'app vorrebbe accedere al microfono</string>
 </dict>
 </plist>

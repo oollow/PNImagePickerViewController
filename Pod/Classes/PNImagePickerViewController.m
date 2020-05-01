@@ -12,7 +12,7 @@
 #import <MobileCoreServices/UTCoreTypes.h>
 #import "PNCollectionViewCell.h"
 #import "NSString+HexColor.h"
-#import <PureLayout/PureLayout.h>
+// #import <PureLayout/PureLayout.h>
 #import <CLImageEditor/CLImageEditor.h>
 
 
@@ -67,10 +67,12 @@
     
     self.view.backgroundColor = [UIColor clearColor];
     
-    _imagePickerView = [UIView newAutoLayoutView];
+    _imagePickerView = [UIView new];
+    _imagePickerView.translatesAutoresizingMaskIntoConstraints = NO;
     [_imagePickerView setBackgroundColor:[UIColor whiteColor]];
     
-    _backgroundView = [UIView newAutoLayoutView];
+    _backgroundView = [UIView new];
+    _backgroundView.translatesAutoresizingMaskIntoConstraints = NO;
     _backgroundView.backgroundColor = [UIColor colorWithWhite:0.1 alpha:0.7];
     _backgroundView.alpha = 0;
     UITapGestureRecognizer *dismissTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismiss)];
@@ -78,8 +80,7 @@
     [_backgroundView addGestureRecognizer:dismissTap];
     
     [self.view addSubview:_backgroundView];
-    
-    
+        
     UICollectionViewFlowLayout *aFlowLayout = [[UICollectionViewFlowLayout alloc] init];
     [aFlowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     
@@ -94,32 +95,36 @@
     
     UIFont *btnFont = [UIFont systemFontOfSize:19.0];
     
-    _photoLibraryBtn = [UIButton newAutoLayoutView];
+    _photoLibraryBtn = [UIButton new];
+    _photoLibraryBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [_photoLibraryBtn setTitle:NSLocalizedString(@"Photo Library",@"") forState:UIControlStateNormal];
     _photoLibraryBtn.titleLabel.font = btnFont;
     [_photoLibraryBtn addTarget:self action:@selector(selectFromLibraryWasPressed) forControlEvents:UIControlEventTouchUpInside];
     [_photoLibraryBtn setTitleColor:[@"0b60fe" colorFromHex] forState:UIControlStateNormal];
     [_photoLibraryBtn setTitleColor:[@"70b3fd" colorFromHex] forState:UIControlStateHighlighted];
     
-    _cancelBtn = [UIButton newAutoLayoutView];
+    _cancelBtn = [UIButton new];
+    _cancelBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [_cancelBtn setTitle:NSLocalizedString(@"Cancel",@"") forState:UIControlStateNormal];
     _cancelBtn.titleLabel.font = btnFont;
     [_cancelBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn setTitleColor:[@"0b60fe" colorFromHex] forState:UIControlStateNormal];
     [_cancelBtn setTitleColor:[@"70b3fd" colorFromHex] forState:UIControlStateHighlighted];
+        
     
-    
-    
-    _separator2 = [UIView newAutoLayoutView];
+    _separator2 = [UIView new];
+    _separator2.translatesAutoresizingMaskIntoConstraints = NO;
     _separator2.backgroundColor = [@"cacaca" colorFromHex];
     [_imagePickerView addSubview:_separator2];
     
-    _separator3 = [UIView newAutoLayoutView];
+    _separator3 = [UIView new];
+    _separator3.translatesAutoresizingMaskIntoConstraints = NO;
     _separator3.backgroundColor = [@"cacaca" colorFromHex];
     [_imagePickerView addSubview:_separator3];
     
     if(_haveCamera) {
-        _cameraBtn = [UIButton newAutoLayoutView];
+        _cameraBtn = [UIButton new];
+        _cameraBtn.translatesAutoresizingMaskIntoConstraints = NO;
         [_cameraBtn setTitle:NSLocalizedString(@"Take Photo",@"") forState:UIControlStateNormal];
         _cameraBtn.titleLabel.font = btnFont;
         [_cameraBtn addTarget:self action:@selector(takePhotoWasPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -128,7 +133,8 @@
         _cameraBtn.hidden = !_haveCamera;
         [_imagePickerView addSubview:_cameraBtn];
         
-        _separator1 = [UIView newAutoLayoutView];
+        _separator1 = [UIView new];
+        _separator1.translatesAutoresizingMaskIntoConstraints = NO;
         _separator1.backgroundColor = [@"cacaca" colorFromHex];
         [_imagePickerView addSubview:_separator1];
     }
@@ -150,71 +156,93 @@
 - (void) updateViewConstraints {
     if (!_didUpdateConstraints) {
         _didUpdateConstraints = YES;
+        [_backgroundView.topAnchor constraintEqualToAnchor:_backgroundView.superview.topAnchor].active = YES;
+        [_backgroundView.leadingAnchor constraintEqualToAnchor:_backgroundView.superview.leadingAnchor].active = YES;
+        [_backgroundView.trailingAnchor constraintEqualToAnchor:_backgroundView.superview.trailingAnchor].active = YES;
+        [_backgroundView.bottomAnchor constraintEqualToAnchor:_backgroundView.superview.bottomAnchor].active = YES;
         
-        [_backgroundView autoPinEdgesToSuperviewEdges];
+        [_imagePickerView.leadingAnchor constraintEqualToAnchor:_imagePickerView.superview.leadingAnchor].active = YES;
+        [_imagePickerView.trailingAnchor constraintEqualToAnchor:_imagePickerView.superview.trailingAnchor].active = YES;
+        _hideConstraint = [_imagePickerView.bottomAnchor constraintEqualToAnchor:_imagePickerView.superview.bottomAnchor constant:-imagePickerHeight];
+        _hideConstraint.active = YES;
+        [_imagePickerView.heightAnchor constraintGreaterThanOrEqualToConstant:290].active = YES;
         
-        [_imagePickerView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
-        [_imagePickerView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
-        _hideConstraint = [_imagePickerView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:-imagePickerHeight];
-        [_imagePickerView autoSetDimension:ALDimensionHeight toSize:100 relation:NSLayoutRelationGreaterThanOrEqual];
+        [_collectionView.widthAnchor constraintEqualToAnchor:_imagePickerView.widthAnchor].active = YES;
+        [_collectionView.heightAnchor constraintEqualToConstant:122].active = YES;
         
+        [_cancelBtn.widthAnchor constraintEqualToAnchor:_imagePickerView.widthAnchor constant:-20].active = YES;
+        [_cancelBtn.centerXAnchor constraintEqualToAnchor:_imagePickerView.centerXAnchor].active = YES;
+        [_cancelBtn.bottomAnchor constraintEqualToAnchor:_imagePickerView.bottomAnchor constant:-15].active = YES;
+        [_cancelBtn.heightAnchor constraintEqualToConstant:30].active = YES;
         
-        [_cancelBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading];
-        [_cancelBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
-        [_cancelBtn autoAlignAxisToSuperviewAxis:ALAxisVertical];
-        [_cancelBtn autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:15];
-        [_cancelBtn autoSetDimension:ALDimensionHeight toSize:30];
-        [_cancelBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10];
-        [_cancelBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10];
+        [_separator2.widthAnchor constraintEqualToAnchor:_imagePickerView.widthAnchor constant:-20].active = YES;
+        [_separator2.bottomAnchor constraintGreaterThanOrEqualToAnchor:_cancelBtn.topAnchor constant:-10].active = YES;
+        [_separator2.centerXAnchor constraintEqualToAnchor:_imagePickerView.centerXAnchor].active = YES;
+        [_separator2.heightAnchor constraintEqualToConstant:1].active = YES;
         
-        [_separator3 autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10];
-        [_separator3 autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10];
-        [_separator3 autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:_cancelBtn withOffset:-10];
-        [_separator3 autoAlignAxisToSuperviewAxis:ALAxisVertical];
-        [_separator3 autoSetDimension:ALDimensionHeight toSize:1];
+        [_photoLibraryBtn.widthAnchor constraintEqualToAnchor:_imagePickerView.widthAnchor constant:-20].active = YES;
+        [_photoLibraryBtn.centerXAnchor constraintEqualToAnchor:_imagePickerView.centerXAnchor].active = YES;
+        [_photoLibraryBtn.heightAnchor constraintEqualToConstant:30].active = YES;
+        [_photoLibraryBtn.bottomAnchor constraintEqualToAnchor:_separator2.topAnchor constant:-10].active = YES;
         
-        [_photoLibraryBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading];
-        [_photoLibraryBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
-        [_photoLibraryBtn autoAlignAxisToSuperviewAxis:ALAxisVertical];
-        [_photoLibraryBtn autoSetDimension:ALDimensionHeight toSize:30];
-        [_photoLibraryBtn autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:_separator3 withOffset:-10];
-        [_photoLibraryBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10];
-        [_photoLibraryBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10];
-        
-        [_separator2 autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10];
-        [_separator2 autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10];
-        [_separator2 autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:_photoLibraryBtn withOffset:-10];
-        [_separator2 autoAlignAxisToSuperviewAxis:ALAxisVertical];
-        [_separator2 autoSetDimension:ALDimensionHeight toSize:1];
+        [_separator3.widthAnchor constraintEqualToAnchor:_imagePickerView.widthAnchor constant:-20].active = YES;
+        [_separator3.centerXAnchor constraintEqualToAnchor:_imagePickerView.centerXAnchor].active = YES;
+        [_separator3.bottomAnchor constraintEqualToAnchor:_photoLibraryBtn.topAnchor constant: -10].active = YES;
+        [_separator3.heightAnchor constraintEqualToConstant:1].active = YES;
         
         if (_haveCamera) {
-            [_cameraBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading];
-            [_cameraBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
-            [_cameraBtn autoAlignAxisToSuperviewAxis:ALAxisVertical];
-            [_cameraBtn autoSetDimension:ALDimensionHeight toSize:30];
-            [_cameraBtn autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:_separator2 withOffset:-10];
-            [_cameraBtn autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10];
-            [_cameraBtn autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10];
+            [_cameraBtn.widthAnchor constraintEqualToAnchor:_imagePickerView.widthAnchor constant:-20].active = YES;
+            [_cameraBtn.centerXAnchor constraintEqualToAnchor:_imagePickerView.centerXAnchor].active = YES;
+            [_cameraBtn.heightAnchor constraintEqualToConstant:30].active = YES;
+            [_cameraBtn.bottomAnchor constraintEqualToAnchor:_separator3.topAnchor constant:-10].active = YES;
             
-            [_separator1 autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:10];
-            [_separator1 autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:10];
-            [_separator1 autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:_cameraBtn withOffset:-10];
-            [_separator1 autoAlignAxisToSuperviewAxis:ALAxisVertical];
-            [_separator1 autoSetDimension:ALDimensionHeight toSize:1];
+            [_separator1.widthAnchor constraintEqualToAnchor:_imagePickerView.widthAnchor constant:-20].active = YES;
+            [_separator1.centerXAnchor constraintEqualToAnchor:_imagePickerView.centerXAnchor].active = YES;
+            [_separator1.bottomAnchor constraintEqualToAnchor:_cameraBtn.topAnchor constant: -10].active = YES;
+            [_separator1.heightAnchor constraintEqualToConstant:1].active = YES;
         }
         
-        [_collectionView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
-        [_collectionView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
-        [_collectionView autoAlignAxisToSuperviewAxis:ALAxisVertical];
-        [_collectionView autoSetDimension:ALDimensionHeight toSize:122];
-        if (_haveCamera) {
-            [_collectionView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:_separator1 withOffset:-15];
-        }
-        else {
-            [_collectionView autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:_separator2 withOffset:-15];
-        }
         
-        [_collectionView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:10];
+//        [_separator3.widthAnchor constraintEqualToAnchor:_imagePickerView.widthAnchor constant:-20].active = YES;
+//        [_separator3.bottomAnchor constraintEqualToAnchor:_cancelBtn.bottomAnchor constant:10].active = YES;
+//        [_separator3.centerXAnchor constraintEqualToAnchor:_separator3.centerXAnchor].active = YES;
+//        [_separator3.heightAnchor constraintEqualToConstant:1].active = YES;
+//
+//        [_photoLibraryBtn.leadingAnchor constraintEqualToAnchor:_photoLibraryBtn.superview.leadingAnchor constant: 10].active = YES;
+//        [_photoLibraryBtn.trailingAnchor constraintEqualToAnchor:_photoLibraryBtn.superview.trailingAnchor constant: 10].active = YES;
+//        [_photoLibraryBtn.centerXAnchor constraintEqualToAnchor:_photoLibraryBtn.superview.centerXAnchor].active = YES;
+//        [_photoLibraryBtn.heightAnchor constraintEqualToConstant:30].active = YES;
+//        [_photoLibraryBtn.bottomAnchor constraintEqualToAnchor:_separator3.topAnchor constant:10].active = YES;
+//
+
+//
+//        if (_haveCamera) {
+//            [_cameraBtn.leadingAnchor constraintEqualToAnchor:_cameraBtn.superview.leadingAnchor constant: 10].active = YES;
+//            [_cameraBtn.trailingAnchor constraintEqualToAnchor:_cameraBtn.superview.trailingAnchor constant: 10].active = YES;
+//            [_cameraBtn.centerXAnchor constraintEqualToAnchor:_cameraBtn.superview.centerXAnchor].active = YES;
+//            [_cameraBtn.heightAnchor constraintEqualToConstant:30].active = YES;
+//            [_cameraBtn.bottomAnchor constraintEqualToAnchor:_separator2.topAnchor constant:-10].active = YES;
+//
+//            [_separator1.leadingAnchor constraintEqualToAnchor:_separator1.superview.leadingAnchor constant: 10].active = YES;
+//            [_separator1.trailingAnchor constraintEqualToAnchor:_separator1.superview.trailingAnchor constant: 10].active = YES;
+//            [_separator1.bottomAnchor constraintEqualToAnchor:_cameraBtn.topAnchor constant:10].active = YES;
+//            [_separator1.centerXAnchor constraintEqualToAnchor: _separator1.superview.centerXAnchor].active = YES;
+//            [_separator1.heightAnchor constraintEqualToConstant:1].active = YES;
+//
+//        }
+//
+//        [_collectionView.leadingAnchor constraintEqualToAnchor:_collectionView.superview.leadingAnchor].active = YES;
+//        [_collectionView.trailingAnchor constraintEqualToAnchor:_collectionView.superview.trailingAnchor].active = YES;
+//        [_collectionView.centerXAnchor constraintEqualToAnchor:_collectionView.superview.centerXAnchor].active = YES;
+//
+//        if (_haveCamera) {
+//            [_collectionView.bottomAnchor constraintEqualToAnchor:_separator1.topAnchor constant:-15].active = YES;
+//        }
+//        else {
+//            [_collectionView.bottomAnchor constraintEqualToAnchor:_separator2.topAnchor constant:-15].active = YES;
+//        }
+//
+//        [_collectionView.topAnchor constraintEqualToAnchor:_collectionView.superview.topAnchor constant:10].active = YES;
         
     }
     [super updateViewConstraints];
@@ -332,6 +360,12 @@
             CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:result];
             editor.delegate = self;
             
+            if (@available(iOS 13.0, *)) {
+                [editor setModalInPresentation:YES];
+            } else {
+                // Fallback on earlier versions
+            }
+            
             [self presentViewController:editor animated:YES completion:nil];
         }
         else {
@@ -379,13 +413,16 @@
 - (void)takePhotoWasPressed {
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
-        UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                              message:@"Device has no camera"
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK"
-                                                    otherButtonTitles: nil];
+        UIAlertController* noCameraAlert = [UIAlertController alertControllerWithTitle:@"Error"
+                                   message:@"Device has no camera"
+                                   preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                       handler:^(UIAlertAction * action) {}];
+
+        [noCameraAlert addAction:defaultAction];
         
-        [myAlertView show];
+        [self presentViewController:noCameraAlert animated:YES completion:nil];
         
     } else {
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
@@ -418,6 +455,12 @@
             
             CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:chosenImage];
             editor.delegate = self;
+            
+            if (@available(iOS 13.0, *)) {
+                [editor setModalInPresentation:YES];
+            } else {
+                // Fallback on earlier versions
+            }
             
             [self presentViewController:editor animated:YES completion:nil];
         }];
@@ -508,7 +551,7 @@
             [delegate imagePickerWillClose];
         }
         
-        [_hideConstraint setConstant:imagePickerHeight];
+        [_hideConstraint setConstant:-imagePickerHeight];
         [_imagePickerView setNeedsUpdateConstraints];
         
         if (animated) {

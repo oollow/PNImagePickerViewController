@@ -8,7 +8,6 @@
 
 #import "PNImagePickerViewControllerViewController.h"
 #import "PNImagePickerViewController.h"
-#import <PureLayout/PureLayout.h>
 
 @interface PNImagePickerViewControllerViewController () <PNImagePickerViewControllerDelegate>
 
@@ -25,13 +24,15 @@
 {
     [super viewDidLoad];
 
-    _button = [UIButton newAutoLayoutView];
+    _button = [UIButton new];
+    _button.translatesAutoresizingMaskIntoConstraints = NO;
     [_button setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     [_button setTitle:@"Show Picker" forState:UIControlStateNormal];
     [_button addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_button];
 
-    _imageView = [UIImageView newAutoLayoutView];
+    _imageView = [UIImageView new];
+    _imageView.translatesAutoresizingMaskIntoConstraints = NO;
     [_imageView setBackgroundColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.6]];
     [_imageView setContentMode:UIViewContentModeScaleAspectFit];
     
@@ -45,22 +46,22 @@
 - (void) updateViewConstraints {
     if (!_didSetupConstraints) {
         _didSetupConstraints = YES;
-
-        [self.view autoPinEdgesToSuperviewEdges];
-
-        [_imageView autoPinEdgeToSuperviewEdge:ALEdgeTop];
-        [_imageView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
-        [_imageView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
-        [_imageView autoAlignAxisToSuperviewAxis:ALAxisVertical];
-
-        [_button autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:_imageView withOffset:20];
-        [_button autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:20];
-        [_button autoAlignAxisToSuperviewAxis:ALAxisVertical];
-        [_button autoSetDimension:ALDimensionHeight toSize:30];
-        [_button autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:100 relation:NSLayoutRelationGreaterThanOrEqual];
-        [_button autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:100 relation:NSLayoutRelationGreaterThanOrEqual];
-
-
+        [self.view.topAnchor constraintEqualToAnchor:self.view.superview.topAnchor].active = YES;
+        [self.view.leadingAnchor constraintEqualToAnchor:self.view.superview.leadingAnchor].active = YES;
+        [self.view.trailingAnchor constraintEqualToAnchor:self.view.superview.trailingAnchor].active = YES;
+        [self.view.bottomAnchor constraintEqualToAnchor:self.view.superview.bottomAnchor].active = YES;
+        
+        [_imageView.topAnchor constraintEqualToAnchor:_imageView.superview.topAnchor].active = YES;
+        [_imageView.leadingAnchor constraintEqualToAnchor:_imageView.superview.leadingAnchor].active = YES;
+        [_imageView.trailingAnchor constraintEqualToAnchor:_imageView.superview.trailingAnchor].active = YES;
+        [_imageView.centerXAnchor constraintEqualToAnchor:_imageView.superview.centerXAnchor].active = YES;
+        
+        [_button.topAnchor constraintEqualToAnchor:_imageView.bottomAnchor constant:20].active = YES;
+        [_button.bottomAnchor constraintEqualToAnchor:_button.superview.bottomAnchor constant:-20].active = YES;
+        [_button.centerXAnchor constraintEqualToAnchor:_button.superview.centerXAnchor].active = YES;
+        [_button.heightAnchor constraintEqualToConstant:30].active = YES;
+        [_button.leadingAnchor constraintGreaterThanOrEqualToAnchor:_button.superview.leadingAnchor constant:100].active = YES;
+        [_button.trailingAnchor constraintGreaterThanOrEqualToAnchor:_button.superview.trailingAnchor constant:-100].active = YES;
     }
     [super updateViewConstraints];
 }

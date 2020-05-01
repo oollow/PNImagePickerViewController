@@ -1,9 +1,9 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '9.0'
+platform :ios, '12.0'
 
 target 'PNImagePickerViewController_Example' do
   pod 'PNImagePickerViewController', :path => '../'
-  pod 'PureLayout'
+  #pod 'PureLayout'
 end
 
 target 'PNImagePickerViewController_Tests' do

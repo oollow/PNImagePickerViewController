@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33197CF7245C2D6B00CD5EC2 /* PNImagePicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 33197CF5245C2D6B00CD5EC2 /* PNImagePicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		33197D01245C2D9300CD5EC2 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33197CFF245C2D9300CD5EC2 /* PhotosUI.framework */; };
-		33197D02245C2D9300CD5EC2 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33197D00245C2D9300CD5EC2 /* Photos.framework */; };
-		33197D04245C2E2000CD5EC2 /* Pod in Resources */ = {isa = PBXBuildFile; fileRef = 33197D03245C2E2000CD5EC2 /* Pod */; };
-		33197D05245C2E2D00CD5EC2 /* Pod in Sources */ = {isa = PBXBuildFile; fileRef = 33197D03245C2E2000CD5EC2 /* Pod */; };
-		33197D07245C2E7D00CD5EC2 /* DGActivityIndicatorView in Resources */ = {isa = PBXBuildFile; fileRef = 33197D06245C2E7D00CD5EC2 /* DGActivityIndicatorView */; };
-		33197D09245C2E8C00CD5EC2 /* CLImageEditor in Resources */ = {isa = PBXBuildFile; fileRef = 33197D08245C2E8C00CD5EC2 /* CLImageEditor */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -44,18 +37,6 @@
 
 /* Begin PBXFileReference section */
 		2A510C8BD6FA22FF4BF841CC /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		33197CE8245C2D0F00CD5EC2 /* PNImagePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PNImagePickerViewController.h; sourceTree = "<group>"; };
-		33197CE9245C2D0F00CD5EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		33197CF3245C2D6B00CD5EC2 /* PNImagePicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PNImagePicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		33197CF5245C2D6B00CD5EC2 /* PNImagePicker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PNImagePicker.h; sourceTree = "<group>"; };
-		33197CF6245C2D6B00CD5EC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		33197CFB245C2D8B00CD5EC2 /* libCLImageEditor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCLImageEditor.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		33197CFC245C2D8B00CD5EC2 /* libDGActivityIndicatorView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDGActivityIndicatorView.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		33197CFF245C2D9300CD5EC2 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/PhotosUI.framework; sourceTree = DEVELOPER_DIR; };
-		33197D00245C2D9300CD5EC2 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/Photos.framework; sourceTree = DEVELOPER_DIR; };
-		33197D03245C2E2000CD5EC2 /* Pod */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Pod; path = ../../Pod; sourceTree = "<group>"; };
-		33197D06245C2E7D00CD5EC2 /* DGActivityIndicatorView */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DGActivityIndicatorView; path = Pods/DGActivityIndicatorView; sourceTree = SOURCE_ROOT; };
-		33197D08245C2E8C00CD5EC2 /* CLImageEditor */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CLImageEditor; path = Pods/CLImageEditor; sourceTree = SOURCE_ROOT; };
 		43986E6CA155C636B098FB5C /* Pods-PNImagePickerViewController_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PNImagePickerViewController_Tests.debug.xcconfig"; path = "Target Support Files/Pods-PNImagePickerViewController_Tests/Pods-PNImagePickerViewController_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C80B5FA595CB4977C47CBE3 /* libPods-PNImagePickerViewController_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PNImagePickerViewController_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* PNImagePickerViewController_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PNImagePickerViewController_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,15 +69,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		33197CF0245C2D6B00CD5EC2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				33197D02245C2D9300CD5EC2 /* Photos.framework in Frameworks */,
-				33197D01245C2D9300CD5EC2 /* PhotosUI.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6003F587195388D20070C39A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -122,35 +94,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		33197CE7245C2D0F00CD5EC2 /* PNImagePickerViewController */ = {
-			isa = PBXGroup;
-			children = (
-				33197CE8245C2D0F00CD5EC2 /* PNImagePickerViewController.h */,
-				33197CE9245C2D0F00CD5EC2 /* Info.plist */,
-			);
-			path = PNImagePickerViewController;
-			sourceTree = "<group>";
-		};
-		33197CF4245C2D6B00CD5EC2 /* PNImagePicker */ = {
-			isa = PBXGroup;
-			children = (
-				33197D08245C2E8C00CD5EC2 /* CLImageEditor */,
-				33197D06245C2E7D00CD5EC2 /* DGActivityIndicatorView */,
-				33197D03245C2E2000CD5EC2 /* Pod */,
-				33197CF5245C2D6B00CD5EC2 /* PNImagePicker.h */,
-				33197CF6245C2D6B00CD5EC2 /* Info.plist */,
-			);
-			path = PNImagePicker;
-			sourceTree = "<group>";
-		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for PNImagePickerViewController */,
 				6003F5B5195388D20070C39A /* Tests */,
-				33197CE7245C2D0F00CD5EC2 /* PNImagePickerViewController */,
-				33197CF4245C2D6B00CD5EC2 /* PNImagePicker */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				61B7F4C46763F303A5BF4642 /* Pods */,
@@ -162,7 +111,6 @@
 			children = (
 				6003F58A195388D20070C39A /* PNImagePickerViewController_Example.app */,
 				6003F5AE195388D20070C39A /* PNImagePickerViewController_Tests.xctest */,
-				33197CF3245C2D6B00CD5EC2 /* PNImagePicker.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,10 +118,6 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				33197D00245C2D9300CD5EC2 /* Photos.framework */,
-				33197CFF245C2D9300CD5EC2 /* PhotosUI.framework */,
-				33197CFB245C2D8B00CD5EC2 /* libCLImageEditor.a */,
-				33197CFC245C2D8B00CD5EC2 /* libDGActivityIndicatorView.a */,
 				681785901C69DCB50032DAAC /* PNImagePickerViewController.framework */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
@@ -253,36 +197,7 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		33197CEE245C2D6B00CD5EC2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				33197CF7245C2D6B00CD5EC2 /* PNImagePicker.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
-		33197CF2245C2D6B00CD5EC2 /* PNImagePicker */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 33197CF8245C2D6B00CD5EC2 /* Build configuration list for PBXNativeTarget "PNImagePicker" */;
-			buildPhases = (
-				33197CEE245C2D6B00CD5EC2 /* Headers */,
-				33197CEF245C2D6B00CD5EC2 /* Sources */,
-				33197CF0245C2D6B00CD5EC2 /* Frameworks */,
-				33197CF1245C2D6B00CD5EC2 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = PNImagePicker;
-			productName = PNImagePicker;
-			productReference = 33197CF3245C2D6B00CD5EC2 /* PNImagePicker.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		6003F589195388D20070C39A /* PNImagePickerViewController_Example */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "PNImagePickerViewController_Example" */;
@@ -332,11 +247,6 @@
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Giuseppe Nucifora";
 				TargetAttributes = {
-					33197CF2245C2D6B00CD5EC2 = {
-						CreatedOnToolsVersion = 11.3.1;
-						DevelopmentTeam = 8498Z5DRCR;
-						ProvisioningStyle = Automatic;
-					};
 					6003F589195388D20070C39A = {
 						DevelopmentTeam = 8498Z5DRCR;
 					};
@@ -361,22 +271,11 @@
 			targets = (
 				6003F589195388D20070C39A /* PNImagePickerViewController_Example */,
 				6003F5AD195388D20070C39A /* PNImagePickerViewController_Tests */,
-				33197CF2245C2D6B00CD5EC2 /* PNImagePicker */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		33197CF1245C2D6B00CD5EC2 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				33197D04245C2E2000CD5EC2 /* Pod in Resources */,
-				33197D07245C2E7D00CD5EC2 /* DGActivityIndicatorView in Resources */,
-				33197D09245C2E8C00CD5EC2 /* CLImageEditor in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6003F588195388D20070C39A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -481,14 +380,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		33197CEF245C2D6B00CD5EC2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				33197D05245C2E2D00CD5EC2 /* Pod in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		6003F586195388D20070C39A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,79 +428,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		33197CF9245C2D6B00CD5EC2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8498Z5DRCR;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = PNImagePicker/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.1;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.oolloow.PNImagePicker.PNImagePicker;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		33197CFA245C2D6B00CD5EC2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 8498Z5DRCR;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = PNImagePicker/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MARKETING_VERSION = 1.1;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.oolloow.PNImagePicker.PNImagePicker;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		6003F5BD195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -800,15 +618,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		33197CF8245C2D6B00CD5EC2 /* Build configuration list for PBXNativeTarget "PNImagePicker" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				33197CF9245C2D6B00CD5EC2 /* Debug */,
-				33197CFA245C2D6B00CD5EC2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		6003F585195388D10070C39A /* Build configuration list for PBXProject "PNImagePickerViewController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

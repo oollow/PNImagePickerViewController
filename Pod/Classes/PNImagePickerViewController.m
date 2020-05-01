@@ -107,11 +107,10 @@
     _cancelBtn.translatesAutoresizingMaskIntoConstraints = NO;
     [_cancelBtn setTitle:NSLocalizedString(@"Cancel",@"") forState:UIControlStateNormal];
     _cancelBtn.titleLabel.font = btnFont;
-    [_cancelBtn addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+    [_cancelBtn addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [_cancelBtn setTitleColor:[@"0b60fe" colorFromHex] forState:UIControlStateNormal];
     [_cancelBtn setTitleColor:[@"70b3fd" colorFromHex] forState:UIControlStateHighlighted];
         
-    
     _separator2 = [UIView new];
     _separator2.translatesAutoresizingMaskIntoConstraints = NO;
     _separator2.backgroundColor = [@"cacaca" colorFromHex];
@@ -306,8 +305,8 @@
          the UI, dispatch to the main queue.
          */
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([self->delegate respondsToSelector:@selector(imagePicker:donwloadImageWithProgress:)]) {
-                [self->delegate imagePicker:self donwloadImageWithProgress:progress];
+            if ([self->delegate respondsToSelector:@selector(imagePicker:downloadImageWithProgress:)]) {
+                [self->delegate imagePicker:self downloadImageWithProgress:progress];
             }
         });
     };
@@ -340,15 +339,14 @@
          the UI, dispatch to the main queue.
          */
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([self->delegate respondsToSelector:@selector(imagePicker:donwloadImageWithProgress:)]) {
-                [self->delegate imagePicker:self donwloadImageWithProgress:progress];
+            if ([self->delegate respondsToSelector:@selector(imagePicker:downloadImageWithProgress:)]) {
+                [self->delegate imagePicker:self downloadImageWithProgress:progress];
             }
         });
     };
     
     [[PHImageManager defaultManager] requestImageForAsset:asset targetSize:_targetSize contentMode:PHImageContentModeAspectFit options:options resultHandler:^(UIImage *result, NSDictionary *info) {
         // Hide the progress view now the request has completed.
-        
         
         // Check if the request was successful.
         if (!result) {
@@ -359,11 +357,9 @@
         if (self->_enableEditMode) {
             CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:result];
             editor.delegate = self;
-            
+            editor.theme.toolbarColor = [@"f3f2f2" colorFromHex];
             if (@available(iOS 13.0, *)) {
                 [editor setModalInPresentation:YES];
-            } else {
-                // Fallback on earlier versions
             }
             
             [self presentViewController:editor animated:YES completion:nil];
@@ -455,11 +451,9 @@
             
             CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:chosenImage];
             editor.delegate = self;
-            
+            editor.theme.toolbarColor = [@"f3f2f2" colorFromHex];
             if (@available(iOS 13.0, *)) {
                 [editor setModalInPresentation:YES];
-            } else {
-                // Fallback on earlier versions
             }
             
             [self presentViewController:editor animated:YES completion:nil];
@@ -540,6 +534,14 @@
 }
 
 #pragma mark - Dismiss
+
+- (void)cancel {
+    if ([delegate respondsToSelector:@selector(imagePickerDidCancel)]) {
+        [delegate imagePickerDidCancel];
+    }
+    
+    [self dismiss];
+}
 
 - (void)dismiss {
     [self dismissAnimated:YES];

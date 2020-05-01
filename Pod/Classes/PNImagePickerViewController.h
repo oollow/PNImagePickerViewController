@@ -18,7 +18,7 @@
 
 @optional
 
-- (void)imagePicker:(PNImagePickerViewController *)imagePicker donwloadImageWithProgress:(double )progress;
+- (void)imagePicker:(PNImagePickerViewController *)imagePicker downloadImageWithProgress:(double )progress;
 
 - (void)imagePickerDidOpen;
 

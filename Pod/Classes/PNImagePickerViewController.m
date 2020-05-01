@@ -500,30 +500,32 @@
             [self->_imagePickerView setNeedsUpdateConstraints];
             
             if (animated) {
-                
-                [UIView animateWithDuration:self->_animationTime
-                                      delay:0.0
-                     usingSpringWithDamping:1
-                      initialSpringVelocity:0
-                                    options:0
-                                 animations:^{
-                                     //[_logoImage layoutIfNeeded];
-                                     [self.view layoutIfNeeded];
-                                     [self->_backgroundView setAlpha:1];
-                                     
-                                     [self->_imagePickerView layoutIfNeeded];
-                                     
-                                 } completion:^(BOOL finished) {
-                                     if ([self->delegate respondsToSelector:@selector(imagePickerDidOpen)]) {
-                                         [self->delegate imagePickerDidOpen];
-                                     }
-                                 }];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [UIView animateWithDuration:self->_animationTime
+                                          delay:0.0
+                         usingSpringWithDamping:1
+                          initialSpringVelocity:0
+                                        options:0
+                                     animations:^{
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self.view layoutIfNeeded];
+                            [self->_backgroundView setAlpha:1];
+                            
+                            [self->_imagePickerView layoutIfNeeded];
+                        });
+                    } completion:^(BOOL finished) {
+                        if ([self->delegate respondsToSelector:@selector(imagePickerDidOpen)]) {
+                            [self->delegate imagePickerDidOpen];
+                        }
+                    }];
+                });
                 
             } else {
-                
-                [self->_backgroundView setAlpha:1];
-                
-                [self->_imagePickerView layoutIfNeeded];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self->_backgroundView setAlpha:1];
+                    
+                    [self->_imagePickerView layoutIfNeeded];
+                });
                 
                 if ([self->delegate respondsToSelector:@selector(imagePickerDidOpen)]) {
                     [self->delegate imagePickerDidOpen];

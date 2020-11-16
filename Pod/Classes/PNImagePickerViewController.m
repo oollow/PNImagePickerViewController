@@ -264,14 +264,33 @@
         }];
     }
     
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    
+    if (@available(iOS 14, *)) {
+        if (status == PHAuthorizationStatusLimited || status == PHAuthorizationStatusAuthorized) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self getCameraRollImages];
+            });
+            return;
+        }
+    } else {
+        if (status == PHAuthorizationStatusAuthorized) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self getCameraRollImages];
+            });
+            return;
+        }
+    }
+    
     [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
         switch (status) {
             case PHAuthorizationStatusNotDetermined:
             case PHAuthorizationStatusRestricted:
             case PHAuthorizationStatusDenied: {
-                
+
                 break;
             }
+            case PHAuthorizationStatusLimited:
             case PHAuthorizationStatusAuthorized: {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [self getCameraRollImages];
@@ -387,8 +406,19 @@
 
 
 - (void)getCameraRollImages {
+    if ([delegate respondsToSelector:@selector(imagePickerWillStartEnumeratingPhotos:)]) {
+        [delegate imagePickerWillStartEnumeratingPhotos: ^{
+            [self actualGetCameraRollImages];
+        }];
+        return;
+    }
     
+    [self actualGetCameraRollImages];
+}
+
+- (void)actualGetCameraRollImages {
     dispatch_async(dispatch_get_main_queue(), ^{
+        [self->_assets removeAllObjects];
         
         PHFetchOptions *allPhotosOptions = [PHFetchOptions new];
         allPhotosOptions.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate" ascending:YES]];
@@ -396,7 +426,7 @@
         
         PHFetchResult *allPhotosResult = [PHAsset fetchAssetsWithMediaType:PHAssetMediaTypeImage options:allPhotosOptions];
         [allPhotosResult enumerateObjectsUsingBlock:^(PHAsset *asset, NSUInteger idx, BOOL *stop) {
-            if(asset) {
+            if (asset) {
                 [self->_assets addObject:asset];
             }
         }];

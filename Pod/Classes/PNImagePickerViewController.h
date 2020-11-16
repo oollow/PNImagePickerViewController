@@ -24,6 +24,8 @@
 
 - (void)imagePickerWillOpen;
 
+- (void)imagePickerWillStartEnumeratingPhotos: (dispatch_block_t)block;
+
 - (void)imagePickerWillClose;
 
 - (void)imagePickerDidClose;
